@@ -19,4 +19,3 @@ print(bsobj.select('#review-1019130227196'))
 #     text+=href+'\n' #加入到字符串中，并换行
 #     print(text)
 
-

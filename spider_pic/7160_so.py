@@ -16,7 +16,7 @@ import os
 class picDown:
     def __init__(self):
         self.nowPage = 1
-        self.endpage = 266
+        self.endpage = 50
         self.image_couter = 1
 
 
@@ -59,4 +59,3 @@ class picDown:
 if __name__ == '__main__':
     spider = picDown()
     spider.start()
-
