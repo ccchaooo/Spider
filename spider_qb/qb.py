@@ -71,10 +71,10 @@ class qsbkClassCrawler:
             if income == 'Q':
                 self.enable = False
                 return
-            print("第%d页 作者%s 段子内容%s 点赞数%s" % (page,story[0],story[1],story[2]))
+            print("第%d页 作者%s段子内容%s 点赞数%s" % (page,story[0],story[1].replace("<br/>", "\n"),story[2]))
             # 记录下段子
-            with open('文本.txt', 'a') as f:  # 在当前路径下，以写的方式打开一个名为'文本.txt'，如果不存在则创建
-                f.write("第%d页 作者%s 段子内容%s 点赞数%s" % (page, story[0], story[1], story[2])+'\n')  # 将text里的数据写入到文本中
+            with open('文本.txt', 'a',encoding='utf-8') as f:  # 在当前路径下，以写的方式打开一个名为'文本.txt'，如果不存在则创建
+                f.write("第%d页 作者%s \n段子内容:\n %s \n\n" % (page, story[0], story[1].replace("<br/>", "\n")))  # 将text里的数据写入到文本中
 
     def start(self):
         print("正在读取糗事百科，按回车查看新段子，Q退出")
