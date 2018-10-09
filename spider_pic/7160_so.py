@@ -15,9 +15,9 @@ import os
 
 class picDown:
     def __init__(self):
-        self.nowPage = 101
+        self.nowPage = 1
         self.endpage = 266
-        self.image_couter = 3000
+        self.image_couter = 1
 
 
     def grap_image(self):
