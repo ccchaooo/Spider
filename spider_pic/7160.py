@@ -17,18 +17,22 @@ class qsbkClassCrawler:
         # 传入某一页的索引获得页面代码
     def getPage(self, pageIndex):
             try:
-                url = 'http://www.qiushibaike.com/hot/page/' + str(pageIndex)
+                url = 'http://www.7160.com/qingchunmeinv/list_2_'+str(pageIndex)+'.html';
                 # 构建请求的request
                 request = urllib.request.Request(url, headers=self.headers)
                 # 利用urlopen获取页面代码
                 response = urllib.request.urlopen(request)
+                print(response)
+
                 # 将页面转化为UTF-8编码
-                pageCode = response.read().decode('utf-8')
+                pageCode = response.read().decode('gb2312')
+                print(pageCode)
+
                 return pageCode
 
             except urllib.request.URLError as e:
                 if hasattr(e, "reason"):
-                    print(u"连接糗事百科失败,错误原因", e.reason)
+                    print(u"打开美女图片失败,错误原因", e.reason)
                     return None
 
 
@@ -42,6 +46,7 @@ class qsbkClassCrawler:
         pattern = re.compile(
             '<h2>(.*?)</h2>.*?<div class="content">.*?<span>(.*?)</span>.*?<div class="stats.*?class="number">(.*?)</i>',
             re.S)
+
         items = re.findall(pattern, pageCode)
         pageStories=[]
         for item in items:
@@ -77,7 +82,7 @@ class qsbkClassCrawler:
                 f.write("第%d页 作者%s \n段子内容:\n %s \n\n" % (page, story[0], story[1].replace("<br/>", "\n")))  # 将text里的数据写入到文本中
 
     def start(self):
-        print("正在读取糗事百科，按回车查看新段子，Q退出")
+        print("正在打开美女图片，按回车下载新图片，Q退出")
         #使变量为true,程序可以正常运行
         self.enable=True
         #先加载一页内容
