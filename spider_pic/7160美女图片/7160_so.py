@@ -16,7 +16,7 @@ import os
 class picDown:
     def __init__(self):
         self.nowPage = 1
-        self.endpage = 50
+        self.endpage = 5
         self.image_couter = 1
 
 
