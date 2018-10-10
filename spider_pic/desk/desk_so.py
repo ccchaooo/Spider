@@ -17,10 +17,10 @@ import os
 class picDown:
     def __init__(self):
         self.appname = 'http://desk.zol.com.cn'
-        self.nowPage = '/fengjing/1366x768/'
         self.nextPage = None
         self.firstPage = 'http://desk.zol.com.cn/fengjing/1366x768/'
         self.image_couter = 1
+        self.page_counter = 0
 
 
     def getpics(self, url,name):
@@ -69,17 +69,10 @@ class picDown:
         soup = BeautifulSoup(content, 'lxml')
         classes = soup.select('.photo-list-padding')
         for x in classes:
-            self.getpics(x.find('a').get('href'),x.find('img').get('alt'))
-
-    # def startdown(self):
-    #     while self.nowPage < self.endpage:
-    #         self.nowPage += 1
-    #         self.grap_image()
-    #     print('下载完成')
-    #     return
+            self.getpics(x.find('a').get('href'), x.find('img').get('alt'))
 
     def start(self):
-        while True:
+        while self.page_counter < 2:
             if self.nextPage is None:
                 url = self.firstPage
             else:
@@ -92,12 +85,14 @@ class picDown:
             content = html.read()
             html.close()
 
-            # 使用beautifulsoup匹配图片
             soup = BeautifulSoup(content, 'lxml')
             next = soup.select('#pageNext')
             if len(next) > 0:
                 self.nextPage = self.appname + next[0].get('href')
-                print(self.nextPage)
+                # print(self.nextPage)
+
+            self.page_counter += 1
+
 
 if __name__ == '__main__':
     spider = picDown()
